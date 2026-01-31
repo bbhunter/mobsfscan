@@ -338,6 +338,20 @@ jobs:
            command: mobsfscan .
 ```
 
+#### Bitrise
+
+Add the following to the file `bitrise.yml`
+
+```yaml
+security_audit:
+  steps:
+  - activate-ssh-key@4:
+      run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+  - git-clone@8.4: {}
+  - mobsfscan@1: {}
+  - deploy-to-bitrise-io@2: {}
+```
+
 ## Docker
 
 ### Prebuilt image from [DockerHub](https://hub.docker.com/r/opensecurity/mobsfscan)
